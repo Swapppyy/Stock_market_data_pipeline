@@ -1,26 +1,15 @@
-# Data Pipeline with Reddit, Airflow, Celery, Postgres, S3, AWS Glue, Athena, and Redshift
+# Stock Market Data pipeline using Airflow, Spark, Postgres and Metabase
 
-This project provides a comprehensive data pipeline solution to extract, transform, and load (ETL) Reddit data into a Redshift data warehouse. The pipeline leverages a combination of tools and services including Apache Airflow, Celery, PostgreSQL, Amazon S3, AWS Glue, Amazon Athena, and Amazon Redshift.
+What is this pipeline exactly doing?
 
-## Table of Contents
-
-- [Overview](#overview)
-- [Architecture](#architecture)
-- [Prerequisites](#prerequisites)
-- [System Setup](#system-setup)
-- [Video](#video)
-
-## Overview
-
-The pipeline is designed to:
-
-1. Extract data from Reddit using its API.
-2. Store the raw data into an S3 bucket from Airflow.
-3. Transform the data using AWS Glue and Amazon Athena.
-4. Load the transformed data into Amazon Redshift for analytics and querying.
+1. Extracting data from Yahoo finance API.
+2. Storing the raw data into an Minio bucket using Airflow.
+3. Transforming the data for Analytics using PySpark (which runs seperately on the docker container).
+4. Load the transformed data into Postgres for analytics.
+5. Using Metabase as a service through Docker for analytics.
 
 ## Architecture
-![RedditDataEngineering.png](assets%2FRedditDataEngineering.png)
+![stock-market-data-pipeline.jpg](stock-market-data-pipeline.jpg)
 1. **Reddit API**: Source of the data.
 2. **Apache Airflow & Celery**: Orchestrates the ETL process and manages task distribution.
 3. **PostgreSQL**: Temporary storage and metadata management.
