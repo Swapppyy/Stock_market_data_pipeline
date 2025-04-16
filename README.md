@@ -9,9 +9,9 @@ What is this pipeline exactly doing?
 5. Using Metabase as a service through Docker for analytics.
 
 ## Architecture
-![Architecture](stock-market-data-pipeline.jpg)
+![Architecture](stock-market-data-pipeline.JPG)
 
-![stock-market-data-pipeline.jpg](stock-market-data-pipeline.jpg)
+![stock-market-data-pipeline.JPG](stock-market-data-pipeline.jpg)
 1. **Reddit API**: Source of the data.
 2. **Apache Airflow & Celery**: Orchestrates the ETL process and manages task distribution.
 3. **PostgreSQL**: Temporary storage and metadata management.
