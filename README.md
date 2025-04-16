@@ -10,50 +10,34 @@ What is this pipeline exactly doing?
 
 ## Architecture
 ![Architecture](stock-market-data-pipeline.JPG)
-
-![stock-market-data-pipeline.JPG](stock-market-data-pipeline.jpg)
-1. **Reddit API**: Source of the data.
-2. **Apache Airflow & Celery**: Orchestrates the ETL process and manages task distribution.
-3. **PostgreSQL**: Temporary storage and metadata management.
-4. **Amazon S3**: Raw data storage.
-5. **AWS Glue**: Data cataloging and ETL jobs.
-6. **Amazon Athena**: SQL-based data transformation.
-7. **Amazon Redshift**: Data warehousing and analytics.
-
-## Prerequisites
-- AWS Account with appropriate permissions for S3, Glue, Athena, and Redshift.
-- Reddit API credentials.
-- Docker Installation
-- Python 3.9 or higher
+1. **Yahoo API**: Source of the stock data.
+2. **Apache Airflow**: Orchestrates the ETL process and manages task distribution.
+3. **Spark**: Transforming all the data fetched from the API.
+4. **Postgres**: Storing all the transformed data from the spark job.
+5. **Metabase**: Analytics platform for the data stored after the transformation.
 
 ## System Setup
 1. Clone the repository.
    ```bash
-    git clone https://github.com/Swapppyy/Reddit_ETL_Pipleline.git
+    https://github.com/Swapppyy/Stock_market_data_pipeline.git
    ```
-2. Create a virtual environment.
+2. Install Astro CLI on your system and enter:
    ```bash
-    python3 OR python -m venv venv
+    astro dev start
    ```
-3. Activate the virtual environment. (Below is for Windows OS)
+3. Build the images for the Dockerfile (For Spark)
    ```bash
-    source venv/bin/activate
+    docker build -t airflow/stock-app .
    ```
-4. Install the dependencies.
+4. Test the dag 
    ```bash
-    pip install -r requirements.txt
+    astro dev run dags test stock_market "any old date"
    ```
-5. Rename the configuration file to config.conf in the config folder and update the credentials for your system.
+5. Login into Airflow, Minio, Postgres and Metabase
    ```bash
-    git mv config.conf.example config.conf
+    http://localhost:3000/
+    http://localhost:8080/
+    http://localhost:9001/
+    http://localhost:5432/
    ```
-6. Starting the containers
-   ```bash
-    docker-compose build --no-cache
-    docker-compose up airflow-init
-    docker-compose up -d
-   ```
-7. Launch the Airflow web UI and run the etl_DAG to extract data from Reddit API and push it to the S3 Bucket.
-   ```bash
-    open http://localhost:8080
-   ```
+
