@@ -11,7 +11,7 @@ What is this pipeline exactly doing?
 ## Architecture
 ![Architecture](stock-market-data-pipeline.JPG)
 1. **Yahoo API**: Source of the stock data.
-2. **Apache Airflow**: Orchestrates the ETL process and manages task distribution.
+2. **Apache Airflow**: Orchestrates the ETL process and manages task distribution. For this Airflow congifurations i am using Astronomer to setup my Airflow.
 3. **Spark**: Transforming all the data fetched from the API.
 4. **Postgres**: Storing all the transformed data from the spark job.
 5. **Metabase**: Analytics platform for the data stored after the transformation.
