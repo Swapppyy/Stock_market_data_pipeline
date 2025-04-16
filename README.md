@@ -23,9 +23,10 @@ What is this pipeline exactly doing?
    ```
 2. Install Astro CLI on your system and enter:
    ```bash
+    astro dev init
     astro dev start
    ```
-3. Build the images for the Dockerfile (For Spark)
+3. Build the image for the Spark's Dockerfile
    ```bash
     docker build -t airflow/stock-app .
    ```
